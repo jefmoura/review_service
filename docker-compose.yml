@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+
+  postgres_review:
+    container_name: postgres_review
+    image: postgres:12
+    environment:
+      POSTGRES_DB: review_service
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    volumes:
+      - /var/lib/postgresql/data/
+    restart: always
+
+  review_service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: bash /code/scripts/run-standalone-dev.sh
+    container_name: review_service
+    image: review_service
+    volumes:
+      - .:/code
+    ports:
+      - "8083:8080"
+    depends_on:
+      - postgres_review
+    environment:
+      API_DEBUG: "True"
+      AUTH_SERVICE_URL: "http://auth_service:8080"
+      DATABASE_NAME: "review_service"
+      DATABASE_USER: "root"
+      DATABASE_PASSWORD: "root"
+      DATABASE_HOST: "postgres_review"
+      DATABASE_PORT: "5432"
+      MAX_WORKERS: "1"
+      JWT_PUBLIC_KEY_RSA: |-
+        -----BEGIN PUBLIC KEY-----
+        MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALFc9NFZaOaSwUMPNektbtJqEjYZ6IRB
+        qhqvJu1hKPYn9HYd75c0gIDYHJ9lb7QwQvg44aO27104rDK0xSstzL0CAwEAAQ==
+        -----END PUBLIC KEY-----
