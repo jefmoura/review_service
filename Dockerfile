@@ -9,7 +9,11 @@ WORKDIR /code
 
 RUN apk add --no-cache postgresql-libs bash && \
     apk add --no-cache --virtual .build-deps ca-certificates gcc postgresql-dev \
-    linux-headers libc-dev make libffi-dev
+    linux-headers libc-dev make libffi-dev git
+
+# Add the GitHub Token, so private dependencies(repos) can be retrieved
+ARG GITHUB_TOKEN
+RUN git config --global url."https://${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
 
 COPY ./requirements.txt requirements.txt
 RUN pip install --upgrade pip && pip install -r requirements.txt --no-cache-dir

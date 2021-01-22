@@ -24,7 +24,7 @@ import sys  # noqa
 
 sys.path = ['', '..'] + sys.path[1:]
 
-from app.db.base import Base  # noqa
+from sdk_fastapi.db.base import Base  # noqa
 
 target_metadata = Base.metadata
 

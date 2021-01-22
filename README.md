@@ -51,7 +51,7 @@ Specify each parameter using `-e`, `--env`, and `--env-file` flags to set simple
 ```bash
 $ docker run -e MYVAR1 --env MYVAR2=foo \
     --env-file ./env.list \
-    skolens/provider_service:<version>
+    skolens/review_service:<version>
 ```
 
 The following tables list the configurable parameters and their default values.

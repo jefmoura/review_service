@@ -7,7 +7,7 @@ from sqlalchemy import DateTime, Float, Text, Column, ForeignKey
 from sqlalchemy.dialects.postgresql import ENUM, UUID
 from sqlalchemy.orm import relationship
 
-from app.db.base_class import Base
+from sdk_fastapi.db.base import Base
 
 
 class ReviewEventType(str, enum.Enum):

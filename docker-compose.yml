@@ -17,6 +17,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - GITHUB_TOKEN=${GITHUB_TOKEN}
     entrypoint: bash /code/scripts/run-standalone-dev.sh
     container_name: review_service
     image: review_service

@@ -3,7 +3,8 @@ from uuid import UUID
 
 from fastapi.encoders import jsonable_encoder
 
-from app.db.crud import CRUDBase
+from sdk_fastapi.db.crud import CRUDBase
+
 from app.review.models import Review, ReviewAnswer, ReviewEvent, ReviewEventType
 from app.review.serializers.review import ReviewCreate, ReviewUpdate
 from app.review.serializers.review_answer import ReviewAnswerCreate, ReviewAnswerUpdate
