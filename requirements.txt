@@ -4,7 +4,7 @@ PyJWT==2.0.0
 fastapi-utils==0.2.1
 alembic==1.4.3
 psycopg2-binary==2.8.6
-pydantic==1.7.3
+pydantic==1.7.4
 git+https://github.com/jefmoura/sdk-fastapi@v0.2.0#egg=sdk-fastapi
 gunicorn==20.0.4
 uvicorn[standard]
